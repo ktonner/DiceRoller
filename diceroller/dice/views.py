@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template import Context, Template, loader
 
 # Create your views here.
 from django.http import HttpResponse
@@ -28,7 +29,7 @@ def rollMany(request, number):
     s = ", ".join(map(str, rollsList))
     return HttpResponse("Your dice roll was {roll}, with rolls {rolls}.".format(roll=roll, rolls=s))
 
-def index(request):
+def rollPage(request):
     # return HttpResponse("Your dice roll was {roll}").format(roll = roll())
 
     return HttpResponse(
@@ -38,7 +39,8 @@ def index(request):
     s = "Your dice roll was {roll}".format(roll = roll())
     return HttpResponse(s)
     
-# ("{roll}").format(roll = roll())
+def index(request):
+    context = Context({'my_name': 'Kathleen'})
+    template = loader.get_template('dice/index.html')
 
-# s = "Your dice roll was {roll}".format(roll = roll())
-# HttpResponse(s)
+    return HttpResponse(template.render(context, request))
