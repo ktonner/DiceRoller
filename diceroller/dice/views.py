@@ -40,7 +40,7 @@ def rollPage(request):
     return HttpResponse(s)
     
 def index(request):
-    context = Context({'my_name': 'Kathleen'})
+    context = ({'my_name': 'Kathleen'})
     template = loader.get_template('dice/index.html')
 
     return HttpResponse(template.render(context, request))
