@@ -38,9 +38,11 @@ def rollPage(request):
     
     s = "Your dice roll was {roll}".format(roll = roll())
     return HttpResponse(s)
+
+
     
 def index(request):
-    context = ({'my_name': 'Kathleen'})
+    context = ({'my_name': 'Kathleen', 'dice_type':[4,6,8,10,12,20]})
     template = loader.get_template('dice/index.html')
 
     return HttpResponse(template.render(context, request))
